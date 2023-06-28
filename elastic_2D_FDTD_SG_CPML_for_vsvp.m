@@ -51,10 +51,10 @@ svpx=zeros(round(t/DT),nx);svpz=svpx;
 svsx=zeros(round(t/DT),nx);svsz=svsx;
 % snapvx=zeros(nz,nx);snapvz=zeros(nz,nx);
 
-kx=[0:2*pi/nx:pi (-pi+2*pi/nx):2*pi/nx:-2*pi/nx];
-kv=[0:2*pi/nx:pi (-pi+2*pi/nx):2*pi/nx:-2*pi/nx]';
+kx=[0:(nx-1)]/nx*2*pi;kx(find(kx>pi))=kx(find(kx>pi))-2*pi;
+kz=[0:(nz-1)]'/nz*2*pi;kz(find(kz>pi))=kz(find(kz>pi))-2*pi;
 Kx=repmat(kx,nz,1);
-Kz=repmat(kv,1,nx);
+Kz=repmat(kz,1,nx);
 K=Kx.*Kx+Kz.*Kz;
 
 for	t=DT:DT:T
